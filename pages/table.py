@@ -38,7 +38,25 @@ def path_to_image_html(path):
 def convert_df(input_df):
      return input_df.to_html(escape=False, formatters=dict(Image=path_to_image_html))
 
+def filter_table():
+    filtered_entries = pd.DataFrame()
+
+    # filter by selected category and search by name
+    for x in range(0, len(category_list)):
+        if category_list[x] == category :
+            filtered_entries.append(reformated.iloc[x])
+    
+    html = convert_df(filtered_entries)
+   
+    st.markdown(
+        html,
+        unsafe_allow_html=True
+    )
+
+#filter_table()
+
 html = convert_df(reformated)
+   
 st.markdown(
     html,
     unsafe_allow_html=True

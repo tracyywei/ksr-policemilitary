@@ -29,8 +29,13 @@ reformated["Category Description"] = df['Category Description'].tolist()
 reformated["Manufacturer"] = df['Manufacturer'].tolist()
 
 category_list = list(reformated['Category'].unique())
-category = st.selectbox(label="Choose a category", options=category_list)
+company_list = ["None"]
+for i in list(reformated['Manufacturer'].unique()) :
+    company_list.append(i)
+category = st.multiselect(label="Choose a category", options=category_list)
 name = st.text_input(label="Search up military equipment by name")
+company = st.selectbox(label="Select a manufacturer", options=company_list)
+c_list = df['Category'].tolist()
 
 def path_to_image_html(path):
     return '<img src="' + path + '" width="100" >'
@@ -42,9 +47,14 @@ def filter_table():
     filtered_entries = pd.DataFrame()
 
     # filter by selected category and search by name
-    for x in range(0, len(category_list)):
-        if category_list[x] == category :
-            filtered_entries.append(reformated.iloc[x])
+    for cat in category :
+        for x in range(0, len(c_list)):
+            if c_list[x] == cat and name in reformated.iloc[x]['Listed Name']:
+                if company == "None":
+                    filtered_entries = filtered_entries.append(reformated.iloc[x])
+                elif company == reformated.iloc[x]['Manufacturer']:
+                    filtered_entries = filtered_entries.append(reformated.iloc[x])
+
     
     html = convert_df(filtered_entries)
    
@@ -53,11 +63,11 @@ def filter_table():
         unsafe_allow_html=True
     )
 
-#filter_table()
-
-html = convert_df(reformated)
-   
-st.markdown(
+if category == [] :
+   html = convert_df(reformated)
+   st.markdown(
     html,
     unsafe_allow_html=True
-)
+    )
+else : 
+    filter_table()

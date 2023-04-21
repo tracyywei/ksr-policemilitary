@@ -7,7 +7,7 @@ import glob
 st.set_page_config(layout="wide")
 st.title('Gallery View')
 
-file = "202304-Equipment-List.csv"
+file = "data/202304-Equipment-List.csv"
 
 @st.cache_data
 def load_data():

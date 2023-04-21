@@ -22,10 +22,10 @@ def load_data(path):
     return df
 
 # LOAD GEIJASON FILE
-with open("California_County_Boundaries.geojson") as response:
+with open("data/California_County_Boundaries.geojson") as response:
     geo = json.load(response)
 
-df = load_data("ca_population.csv")
+df = load_data("data/ca_population.csv")
 
 # Geographic Map
 st.title("Map")
@@ -40,6 +40,8 @@ fig = go.Figure(
         colorscale="sunsetdark",
         marker_opacity=0.6,
         marker_line_width=1,
+        hovertemplate="<b>%{location}</b><br>Population: %{z:,}",
+        customdata=df.name
     )
 )
 fig.update_layout(
@@ -50,4 +52,32 @@ fig.update_layout(
     height=600,
 )
 fig.update_layout(margin={"r": 0, "t": 0, "l": 0, "b": 0})
+#st.plotly_chart(fig)
+
+
+# Define the data table
+def load_lea_data():
+    df = pd.read_csv("data/lea_list.csv")
+    df['County'] = df['County'].str.replace(' County', '')
+    return df
+
+lea_df = load_lea_data()
+filtered_data = lea_df 
+
 st.plotly_chart(fig)
+
+
+# Add an event handler for the plotly_click event
+def on_click(trace, points, state):
+    global filtered_data
+    console.log("HIIII")
+    if points.marker.color[0]:
+        clicked_county = points.customdata[0]  # get the clicked county name
+        filtered_data = lea_df[lea_df['County'] == clicked_county]
+        table = st.table(filtered_data)
+
+
+table = st.table(filtered_data)
+
+# Bind the event handler to the click event
+fig.data[0].on_click(on_click)

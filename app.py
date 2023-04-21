@@ -10,7 +10,7 @@ st.subheader('Made by the Know System Racism Project')
 
 @st.cache_data
 def load_data():
-    df = pd.read_csv("202304-Equipment-List.csv")
+    df = pd.read_csv("data/202304-Equipment-List.csv")
     return df
 
 df = load_data()

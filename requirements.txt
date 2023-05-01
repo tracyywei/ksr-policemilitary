@@ -1,10 +1,4 @@
 streamlit-pandas
-glob
-matplotlib.pyplot
-plotly.express
-plotly.graph_objects
-urllib.request
-json
-copy
-plotly.subplots
+matplotlib
+plotly
 streamlit_plotly_events

@@ -1,0 +1,10 @@
+streamlit-pandas
+glob
+matplotlib.pyplot
+plotly.express
+plotly.graph_objects
+urllib.request
+json
+copy
+plotly.subplots
+streamlit_plotly_events

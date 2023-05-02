@@ -1,0 +1,18 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+matplotlib = "*"
+numpy = "*"
+pandas = "*"
+plotly = "*"
+streamlit = "*"
+streamlit-pandas = "*"
+streamlit-plotly-events = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.11"

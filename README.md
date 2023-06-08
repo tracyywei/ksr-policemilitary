@@ -5,7 +5,7 @@ Developed by Tracy Wei
 
 *This web app is still a working prototype.*
 
-![research poster](https://ibb.co/mJMgkgJ)
+![research poster](https://i.ibb.co/G7bNyN7/CESTA-URI-2023-Wei-Poster.png)
 
 ## tl;dr
 California State Assembly Bill 481 (AB-481), which became effective January, 2022, requires law enforcement agencies to post annual reports about the military equipment that they own. But what exactly is this military equipment and what is it used for?
